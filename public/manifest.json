@@ -1,0 +1,23 @@
+{
+	"name": "ServiceSharing",
+	"short_name": "ServiceSharing",
+	"background_color": "#ffffff",
+    "theme_color": "#2E3AA1",
+	"start_url": "./index.html",
+	"display": "standalone",
+	"description": "A service sharing app.",
+	"icons": [
+		{
+			"src": "./vite.svg",
+			"sizes": "512x512",
+			"type": "image/svg+xml",
+			"purpose": "maskable any"
+		},
+		{
+			"src": "red-heart.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "any"
+		}
+	]
+}
