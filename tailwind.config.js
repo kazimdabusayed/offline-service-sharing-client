@@ -8,6 +8,6 @@ export default {
 	theme: {
 		extend: {},
 	},
-	plugins: [require("preline/plugin"), require("flowbite/plugin")],
+	plugins: [require("preline/plugin")],
 };
 
