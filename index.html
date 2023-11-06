@@ -12,11 +12,11 @@
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     <!-- PWA Script -->
-    <script>
+    <script type="module">
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker
-            .register('serviceWorker.js')
+            .register('./serviceWorker.js')
             .then((reg) => console.log('Success: ', reg.scope))
             .catch((err) => console.log('Failure: ', err));
         });
