@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-
 const Signup = () => {
 	const { createUser } = useContext(AuthContext);
 	// const [signupError, setSignupError] = useState("");
@@ -45,11 +44,12 @@ const Signup = () => {
 			.then((result) => {
 				console.log(result.user);
 				const createdAt = result.user.metadata?.creationTime;
-				const user = { email, createdAt: createdAt };
-				console.log(user, createdAt);
+				// const user = { email, createdAt: createdAt };
 				axios
-					.post("http://localhost:5000/users", {
-						user,
+					.post("http://localhost:5000/api/v1/users", {
+						name,
+						email,
+						createdAt: createdAt,
 					})
 					.then((res) => {
 						console.log(res);
