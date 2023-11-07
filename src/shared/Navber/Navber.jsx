@@ -1,7 +1,5 @@
 import useScrolPosition from "../../hooks/useScrolPosition";
 import { Link, NavLink } from "react-router-dom";
-import { Fragment } from "react";
-import { Menu, Transition } from "@headlessui/react";
 import { AuthContext } from "../../provider/AuthProvider";
 import { useContext } from "react";
 
@@ -25,8 +23,8 @@ const Navber = () => {
 	return (
 		<header
 			className={classNames(
-				scrollPosition > 0 ? "shadow" : "shadow-none",
-				"sticky top-0 transition-shadow w-full flex flex-wrap sm:justify-start sm:flex-nowrap z-50 bg-blue-600 border-b border-white/[.5] text-sm py-3 sm:py-0"
+				scrollPosition > 0 ? "shadow " : "shadow-none",
+				"sticky top-0 transition-shadow w-full flex flex-wrap sm:justify-start sm:flex-nowrap z-50 bg-blue-600 border-b border-white/[.5] py-3 sm:py-0"
 			)}
 		>
 			<nav
@@ -73,6 +71,7 @@ const Navber = () => {
 						</button>
 					</div>
 				</div>
+
 				<div
 					id="navbar-collapse-with-animation"
 					className="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block"
@@ -138,10 +137,25 @@ const Navber = () => {
 									type="button"
 									className="flex items-center w-full"
 								>
-									{<img src={user?.photoURL ? user.photoURL : "https://flowbite.com/docs/images/people/profile-picture-5.jpg"} alt="avater" className="w-10 h-10 rounded-xl"/>}
+									{
+										<img
+											src={
+												user?.photoURL
+													? user.photoURL
+													: "https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+											}
+											alt="avater"
+											className="w-10 h-10 rounded-xl"
+										/>
+									}
 								</button>
 
 								<div className="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] sm:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 sm:w-48 hidden z-10 bg-white sm:shadow-md rounded-lg p-2 dark:bg-gray-800 sm:dark:border dark:border-gray-700 dark:divide-gray-700 before:absolute top-full sm:border before:-top-5 before:left-0 before:w-full before:h-5">
+
+									<div className="py-2 px-3 rounded-md text-base text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
+										<p>{user?.displayName}</p>
+										<p>{user?.email}</p>
+									</div>
 									<a
 										className="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
 										to="/"

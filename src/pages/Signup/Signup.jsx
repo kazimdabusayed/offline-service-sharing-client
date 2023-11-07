@@ -1,29 +1,68 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../../provider/AuthProvider';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 
 const Signup = () => {
+	const { createUser } = useContext(AuthContext);
+	// const [signupError, setSignupError] = useState("");
+	// const [success, setSuccess] = useState("");
+	const navigate = useNavigate();
 
-    const { createUser } = useContext(AuthContext);
+	const handleSignUp = (e) => {
+		e.preventDefault();
+		const form = new FormData(e.currentTarget);
+		const name = form.get("name");
+		const email = form.get("email");
+		const password = form.get("password");
 
-	const handleSignUp = event => {
-		event.preventDefault();
-		const form = event.target;
-		const name = form.name.value;
-		const email = form.email.value;
-		const password = form.password.value;
+		// reset error and success
+		// setSignupError("");
+		// setSuccess("");
 
+		// if (password !== confirmPassword) {
+		// 	setSignupError("Password don't match.");
+		// 	return;
+		// } else if (password.length < 6) {
+		// 	console.log(password.length);
+		// 	setSignupError("Password must be at least 6 characters long.");
+		// 	return;
+		// } else if (!/[A-Z]/.test(password)) {
+		// 	setSignupError(
+		// 		"Password must contain at least one capital letter."
+		// 	);
+		// 	return;
+		// } else if (!/[!@#$%^&*]/.test(password)) {
+		// 	setSignupError(
+		// 		"Password must contain at least one special character."
+		// 	);
+		// 	return;
+		// }
 
-		createUser(name, email, password)
+		createUser(email, password)
 			.then((result) => {
-				const user = result.user;
-				console.log(user);
+				console.log(result.user);
+				const createdAt = result.user.metadata?.creationTime;
+				const user = { email, createdAt: createdAt };
+				console.log(user, createdAt);
+				axios
+					.post("http://localhost:5000/users", {
+						user,
+					})
+					.then((res) => {
+						console.log(res);
+						if (res.data.insertedId) {
+							toast.success("User Added Succssfully");
+						}
+						navigate("/login");
+					});
 			})
 			.catch((error) => console.error(error));
 	};
 
-    return (
+	return (
 		<div className="flex flex-col max-w-md p-6 m-auto rounded-md sm:p-10 dark:bg-gray-900 dark:text-gray-100">
 			<div className="mb-8 text-center">
 				<h1 className="my-3 text-4xl font-bold">Sign up</h1>
@@ -93,9 +132,7 @@ const Signup = () => {
 				</div>
 				<div className="space-y-2">
 					<div>
-						<button
-							className="w-full px-8 py-3 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900"
-						>
+						<button className="w-full px-8 py-3 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900">
 							Sign in
 						</button>
 					</div>
