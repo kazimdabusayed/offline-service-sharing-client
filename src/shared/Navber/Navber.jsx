@@ -8,16 +8,13 @@ function classNames(...classes) {
 }
 
 const Navber = () => {
-
 	const scrollPosition = useScrolPosition();
 	const { user, logOut } = useContext(AuthContext);
 
 	// console.log(user?.displayName);
 
 	const handleLogOut = () => {
-		logOut()
-		.then()
-		.catch();
+		logOut().then().catch();
 	};
 
 	return (
@@ -32,13 +29,13 @@ const Navber = () => {
 				aria-label="Global"
 			>
 				<div className="flex items-center justify-between">
-					<a
+					<Link
 						className="flex-none text-xl font-semibold text-white"
-						href="#"
+						to="/"
 						aria-label="Brand"
 					>
 						Brand
-					</a>
+					</Link>
 					<div className="sm:hidden">
 						<button
 							type="button"
@@ -132,41 +129,73 @@ const Navber = () => {
 						)}
 
 						{user ? (
-							<div className="hs-dropdown [--strategy:static] sm:[--strategy:fixed] [--adaptive:none]  sm:py-4">
+							// <div className="hs-dropdown [--strategy:static] sm:[--strategy:fixed] [--adaptive:none]  sm:py-4">
+							//
+
+							// 	<div className="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] sm:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 sm:w-48 hidden z-10 bg-white sm:shadow-md rounded-lg p-2 dark:bg-gray-800 sm:dark:border dark:border-gray-700 dark:divide-gray-700 before:absolute top-full sm:border before:-top-5 before:left-0 before:w-full before:h-5">
+							// //
+							// 	</div>
+							// </div>
+							<div className="hs-dropdown relative inline-flex  sm:py-4 px-2">
 								<button
+									id="hs-dropdown-custom-trigger"
 									type="button"
-									className="flex items-center w-full"
+									className="hs-dropdown-toggle py-1 ps-1 pe-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-600 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
 								>
-									{
-										<img
-											src={
-												user?.photoURL
-													? user.photoURL
-													: "https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-											}
-											alt="avater"
-											className="w-10 h-10 rounded-xl"
-										/>
-									}
+									<img
+										src={
+											user?.photoURL
+												? user.photoURL
+												: "https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+										}
+										alt="avater"
+										className="w-8 h-auto rounded-full"
+									/>
+									<span className="text-gray-600 font-medium truncate max-w-[7.5rem] dark:text-gray-400">
+										{user?.displayName}
+									</span>
+									<svg
+										className="hs-dropdown-open:rotate-180 w-4 h-4"
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										strokeWidth="2"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+									>
+										<path d="m6 9 6 6 6-6" />
+									</svg>
 								</button>
 
-								<div className="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] sm:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 sm:w-48 hidden z-10 bg-white sm:shadow-md rounded-lg p-2 dark:bg-gray-800 sm:dark:border dark:border-gray-700 dark:divide-gray-700 before:absolute top-full sm:border before:-top-5 before:left-0 before:w-full before:h-5">
-									<div className="py-2 px-3 rounded-md text-base text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
-										<p>{user?.displayName}</p>
-										<p>{user?.email}</p>
+								<div
+									className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-[15rem] bg-white shadow-md rounded-lg p-2 mt-2 dark:bg-gray-800 dark:border dark:border-gray-700"
+									aria-labelledby="hs-dropdown-custom-trigger"
+								>
+									<div className="py-3 px-5 -m-2 bg-gray-100 rounded-t-lg dark:bg-gray-700">
+										<p className="text-sm text-gray-500 dark:text-gray-400">
+											Logged in as
+										</p>
+										<p className="text-sm font-medium text-gray-800 dark:text-gray-300">
+											{user?.email}
+										</p>
 									</div>
-									<a
-										className="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-										to="/"
-									>
-										Profile
-									</a>
-									<p
-										onClick={handleLogOut}
-										className="flex items-center gap-x-3.5 py-2 px-3 cursor-pointer rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-									>
-										Log Out
-									</p>
+									<div className="mt-2 py-2 first:pt-0 last:pb-0">
+										<Link
+											className="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+											to="/"
+										>
+											Profile
+										</Link>
+										<p
+											onClick={handleLogOut}
+											className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg cursor-pointer text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700"
+										>
+											Log Out
+										</p>
+									</div>
 								</div>
 							</div>
 						) : (
@@ -193,8 +222,5 @@ const Navber = () => {
 		</header>
 	);
 };
-
-
-
 
 export default Navber;

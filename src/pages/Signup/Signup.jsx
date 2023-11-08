@@ -3,6 +3,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { updateProfile } from "firebase/auth";
 
 const Signup = () => {
 	const { createUser } = useContext(AuthContext);
@@ -14,6 +15,7 @@ const Signup = () => {
 		e.preventDefault();
 		const form = new FormData(e.currentTarget);
 		const name = form.get("name");
+		const photo = form.get("photo");
 		const email = form.get("email");
 		const password = form.get("password");
 
@@ -45,10 +47,16 @@ const Signup = () => {
 				console.log(result.user);
 				const createdAt = result.user.metadata?.creationTime;
 				// const user = { email, createdAt: createdAt };
+				//update
+				updateProfile(result.user, {
+					displayName: name,
+					photoURL: photo
+				})
 				axios
 					.post("http://localhost:5000/api/v1/users", {
 						name,
 						email,
+						photo,
 						createdAt: createdAt,
 					})
 					.then((res) => {
@@ -86,7 +94,7 @@ const Signup = () => {
 					</div>
 					<div>
 						<label htmlFor="photo" className="block mb-2 text-sm">
-							photo
+							Photo URL
 						</label>
 						<input
 							type="photo"

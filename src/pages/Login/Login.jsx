@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../provider/AuthProvider';
+import React, { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Login = () => {
-
 	const { logIn, googleLogIn } = useContext(AuthContext);
 	const location = useLocation();
 	const navigate = useNavigate();
 
-	const handleSignIn = e => {
+	const handleSignIn = (e) => {
 		e.preventDefault();
 		const form = e.target;
 		const email = form.email.value;
@@ -17,6 +17,7 @@ const Login = () => {
 		logIn(email, password)
 			.then((result) => {
 				console.log(result.user);
+				toast.success("Log In");
 				// navigate after login
 				navigate(location?.state ? location.state : "/");
 			})
@@ -35,7 +36,7 @@ const Login = () => {
 		}
 	};
 
-    return (
+	return (
 		<div className="w-full m-auto max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100">
 			<div className="mb-8 text-center">
 				<h1 className="my-3 text-4xl font-bold">Log in</h1>

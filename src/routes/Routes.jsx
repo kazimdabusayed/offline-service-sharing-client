@@ -6,6 +6,7 @@ import Login from "../pages/Login/Login";
 import Signup from "../pages/Signup/Signup";
 import AllServices from "../pages/AllServices/AllServices";
 import AddServices from "../pages/AddServices/AddServices";
+import MySchedule from "../pages/MySchedule/MySchedule";
 
 
 const router = createBrowserRouter([
@@ -25,7 +26,11 @@ const router = createBrowserRouter([
 			{
 				path: "/add-services",
 				element: <AddServices/>
-			}
+			},
+			{
+				path: "/my-schedules",
+				element: <MySchedule/>
+			},
 		],
 	},
 	{

@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
+import axios from "axios";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -38,10 +39,29 @@ const AuthProvider = ({ children }) => {
 	};
 
 	useEffect(() => {
-		const unsubscribe = onAuthStateChanged(auth, currentUser => {
+		const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+			const userEmail = currentUser?.email || user?.email;
+			const loggedUser = { email: userEmail };
 			setUser(currentUser);
 			console.log("Current user", currentUser);
 			setLoading(false);
+			//if user
+			if (currentUser) {
+				axios
+					.post("http://localhost:5000/jwt", loggedUser, {
+						withCredentials: true,
+					})
+					.then((res) => {
+						console.log("token response", res.data);
+					});
+			} else {
+				axios.post("http://localhost:5000/logout", loggedUser, {
+					withCredentials: true
+				})
+				.then(res =>{
+					console.log(res.data);
+				})
+			}
 		});
 		return () => {
 			return unsubscribe();
@@ -50,18 +70,16 @@ const AuthProvider = ({ children }) => {
 
 	const authInfo = { user, loading, createUser, logIn, googleLogIn, logOut };
 
-// 	if (user !== null) {
-// 	user.providerData.forEach((profile) => {
-// 		console.log("  Name: " + profile.displayName);
-// 		console.log("  Email: " + profile.email);
-// 		console.log("  Photo URL: " + profile.photoURL);
-// 	});
-// }
+	// 	if (user !== null) {
+	// 	user.providerData.forEach((profile) => {
+	// 		console.log("  Name: " + profile.displayName);
+	// 		console.log("  Email: " + profile.email);
+	// 		console.log("  Photo URL: " + profile.photoURL);
+	// 	});
+	// }
 
 	return (
-		<AuthContext.Provider value={authInfo}>
-			{children}
-		</AuthContext.Provider>
+		<AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
 	);
 };
 
