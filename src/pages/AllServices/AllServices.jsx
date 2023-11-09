@@ -1,7 +1,7 @@
-import ServiceCard from "./ServiceCard";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
+import ServiceCard from "./ServiceCard";
 
 const AllServices = () => {
 	// const { data: allServices, isLoading, isError } = useQuery(["allServices"], () =>
@@ -51,10 +51,10 @@ const AllServices = () => {
 	}
 
 	return (
-		<div className="mt-8">
+		<div className="bg-white dark:bg-gray-800 dark:text-gray-100">
 			<div className="text-center">
-				<h3 className="text-3xl text-indigo-600">All Services</h3>
-				<h2 className="text-base">
+				<h3 className="text-3xl text-indigo-600 ">All Services</h3>
+				<h2 className="text-base my-4">
 					the majority have suffered alteration in some form, by
 					injected humour, or randomised <br /> words which don&apos;t
 					look even slightly believable.{" "}
@@ -62,7 +62,7 @@ const AllServices = () => {
 
 				<div className="m-auto w-screen max-w-screen-md">
 					<div className="flex flex-col">
-						<div className="rounded-xl border border-gray-200 bg-white p-6 shadow-lg">
+						<div className="rounded-xl border dark:border-gray-400 border-gray-200 p-6 shadow-lg">
 							<form className="">
 								<div className="relative mb-10 w-full flex  items-center justify-between rounded-md">
 									<svg
@@ -97,7 +97,7 @@ const AllServices = () => {
 										}
 										type="name"
 										name="search"
-										className="h-12 w-full cursor-text rounded-md border border-gray-100 bg-gray-100 py-4 pr-40 pl-12 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+										className="h-12 w-full cursor-text rounded-md border dark:bg-gray-600 border-gray-100 dark:border-gray-300 bg-gray-100 py-4 pr-40 pl-12 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
 										placeholder="Search by name"
 									/>
 								</div>
@@ -182,14 +182,16 @@ const AllServices = () => {
 					</div>
 				</div>
 			</div>
-			<div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto dark:bg-gray-800 dark:text-gray-100">
-				<div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
+			<div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto ">
+				<div className="grid lg:grid-cols-2 gap-6">
 					{allServices.length &&
 						allServices
 							.filter((service) => {
 								return search.toLowerCase() === ""
 									? service
-									: service.serviceName.toLowerCase().includes(search);
+									: service.serviceName
+											.toLowerCase()
+											.includes(search);
 							})
 							.map((service) => (
 								<ServiceCard

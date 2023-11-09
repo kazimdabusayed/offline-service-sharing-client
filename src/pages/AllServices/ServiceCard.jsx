@@ -1,7 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 
 const ServiceCard = ({ service }) => {
-
 	const ser = useParams();
 
 	const {
@@ -18,7 +17,7 @@ const ServiceCard = ({ service }) => {
 		<div>
 			<div className="">
 				{/* <!-- Card --> */}
-				<a
+				<div
 					className="group flex flex-col h-full border border-gray-200 hover:border-transparent hover:shadow-lg transition-all duration-300 rounded-xl p-5 dark:border-gray-700 dark:hover:border-transparent dark:hover:shadow-black/[.4] dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
 					href="#"
 				>
@@ -30,23 +29,30 @@ const ServiceCard = ({ service }) => {
 						/>
 					</div>
 					<div className="my-6">
-						<h3 className="text-xl font-semibold text-gray-800 dark:text-gray-300 dark:group-hover:text-white">
-							{serviceName}
-						</h3>
+						<div className="flex items-center justify-between">
+							<h3 className="text-xl font-semibold text-gray-800 dark:text-gray-300 dark:group-hover:text-white">
+								{serviceName}
+							</h3>
+							<h3 className="text-xl font-semibold text-gray-800 dark:text-gray-300 dark:group-hover:text-white">
+								{price} tk
+							</h3>
+						</div>
 						<p className="mt-5 text-gray-600 dark:text-gray-400">
 							{description}
 						</p>
 					</div>
-					<div className="mt-auto flex items-center gap-x-3">
-						<img
-							className="w-8 h-8 rounded-full"
-							src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80"
-							alt="Image Description"
-						/>
-						<div>
-							<h5 className="text-sm text-gray-800 dark:text-gray-200">
-								By {providerName}
-							</h5>
+					<div className="flex justify-between">
+						<div className="mt-auto flex items-center gap-x-3">
+							<img
+								className="w-8 h-8 rounded-full"
+								src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80"
+								alt="Image Description"
+							/>
+							<div>
+								<h5 className="text-sm text-gray-800 dark:text-gray-200">
+									By {providerName}
+								</h5>
+							</div>
 						</div>
 						<Link
 							to={`/services/${_id}`}
@@ -55,7 +61,7 @@ const ServiceCard = ({ service }) => {
 							Details
 						</Link>
 					</div>
-				</a>
+				</div>
 				{/* <!-- End Card --> */}
 			</div>
 			{/* <!-- End Grid --> */}

@@ -21,7 +21,7 @@ const Navber = () => {
 		<header
 			className={classNames(
 				scrollPosition > 0 ? "shadow " : "shadow-none",
-				"sticky top-0 transition-shadow w-full flex flex-wrap sm:justify-start sm:flex-nowrap z-50 bg-blue-600 border-b border-white/[.5] py-3 sm:py-0"
+				"sticky top-0 transition-shadow w-full flex flex-wrap sm:justify-start sm:flex-nowrap z-50 bg-violet-600 border-b border-white/[.5] py-3 sm:py-0"
 			)}
 		>
 			<nav
@@ -30,7 +30,7 @@ const Navber = () => {
 			>
 				<div className="flex items-center justify-between">
 					<Link
-						className="flex-none text-xl font-semibold text-white"
+						className="flex-none text-2xl font-semibold text-white"
 						to="/"
 						aria-label="Brand"
 					>
