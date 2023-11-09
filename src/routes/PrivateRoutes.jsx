@@ -9,15 +9,18 @@ const PrivateRoutes = ({ children }) => {
 
 	if (loading) {
 		return (
-			<div className="">
-				<span className="loading loading-spinner text-primary"></span>
-				<span className="loading loading-spinner text-secondary"></span>
-				<span className="loading loading-spinner text-accent"></span>
-				<span className="loading loading-spinner text-neutral"></span>
-				<span className="loading loading-spinner text-info"></span>
-				<span className="loading loading-spinner text-success"></span>
-				<span className="loading loading-spinner text-warning"></span>
-				<span className="loading loading-spinner text-error"></span>
+			<div className="h-screen flex flex-col bg-white dark:bg-gray-800">
+				<div className="flex flex-auto flex-col justify-center items-center p-4 md:p-5">
+					<div className="flex justify-center">
+						<div
+							className="animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-blue-600 rounded-full dark:text-blue-500"
+							role="status"
+							aria-label="loading"
+						>
+							<span className="sr-only">Loading...</span>
+						</div>
+					</div>
+				</div>
 			</div>
 		);
 	}

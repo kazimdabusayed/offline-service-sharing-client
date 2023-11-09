@@ -5,26 +5,30 @@ const AddServices = () => {
 	const handleAddService = (event) => {
 		event.preventDefault();
 		const form = event.target;
-		const name = form.name.value;
-		const areaName = form.areaName.value;
-		// const rating = form.rating.value;
-		const description = form.description.value;
+		const serviceName = form.serviceName.value;
+		const area = form.area.value;
 		const price = form.price.value;
-		// const photo = form.photo.value;
+		const servicePhoto = form.servicePhoto.value;
+		const providerName = form.providerName.value;
+		const providerImage = form.providerImage.value;
+		const description = form.description.value;
 
 		// send data to the server
 		axios
 			.post("http://localhost:5000/api/v1/services", {
-				name,
-				areaName,
+				serviceName,
+				area,
 				price,
-                description
+				servicePhoto,
+				providerName,
+				providerImage,
+				description,
 			})
 			.then((res) => {
 				console.log(res);
 				if (res.data.insertedId) {
-                    toast.success("Service Added Succssfully", {
-						duration:  1500,
+					toast.success("Service Added Succssfully", {
+						duration: 1500,
 						position: "top-center",
 						// Styling
 						style: {},
@@ -57,14 +61,14 @@ const AddServices = () => {
 					<div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
 						<div className="sm:col-span-2">
 							<label
-								for="name"
+								htmlFor="name"
 								className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
 							>
 								Service Name
 							</label>
 							<input
 								type="text"
-								name="name"
+								name="serviceName"
 								id="name"
 								className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
 								placeholder="Type Service name"
@@ -73,7 +77,7 @@ const AddServices = () => {
 						</div>
 						<div className="w-full">
 							<label
-								for="area"
+								htmlFor="area"
 								className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
 							>
 								Service Area
@@ -89,10 +93,10 @@ const AddServices = () => {
 						</div>
 						<div className="w-full">
 							<label
-								for="price"
+								htmlFor="price"
 								className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
 							>
-								Price
+								Service Price
 							</label>
 							<input
 								type="number"
@@ -103,52 +107,66 @@ const AddServices = () => {
 								required=""
 							/>
 						</div>
-						<div>
+						<div className="sm:col-span-2">
 							<label
-								for="category"
+								htmlFor="photo"
 								className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
 							>
-								Category
+								Service Photo
 							</label>
-							<select
-								id="category"
-								className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-							>
-								<option selected>Select category</option>
-								<option>TV/Monitors</option>
-								<option>PC</option>
-								<option>Gaming/Console</option>
-								<option>Phones</option>
-							</select>
+							<input
+								type="text"
+								name="servicePhoto"
+								id="photo"
+								className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+								placeholder="Service photo URL"
+								required=""
+							/>
 						</div>
 						<div>
 							<label
-								for="item-weight"
+								htmlFor="ProviderName"
 								className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
 							>
-								Item Weight (kg)
+								Provider Name
 							</label>
 							<input
-								type="number"
-								name="item-weight"
-								id="item-weight"
+								type="text"
+								name="providerName"
+								id="ProviderName"
 								className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-								placeholder="12"
+								placeholder="Type Provider Name"
+								required=""
+							/>
+						</div>
+						<div>
+							<label
+								htmlFor="ProviderImage"
+								className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+							>
+								Provider Image
+							</label>
+							<input
+								type="text"
+								name="providerImage"
+								id="ProviderImage"
+								className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+								placeholder="Provider Image URL"
 							/>
 						</div>
 						<div className="sm:col-span-2">
 							<label
-								for="description"
+								htmlFor="description"
 								className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
 							>
-								Description
+								Service Description
 							</label>
 							<textarea
 								id="description"
 								name="description"
 								rows="8"
 								className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-								placeholder="Your description here"
+								placeholder="Service description here"
 							></textarea>
 						</div>
 					</div>
