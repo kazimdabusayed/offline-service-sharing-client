@@ -34,7 +34,7 @@ const ServiceDetails = () => {
 		};
 		// add to book
 		axios
-			.post("http://localhost:5000/api/v1/booking")
+			.post("https://offline-service-sharing-server.vercel.app/api/v1/booking")
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.insertedId) {

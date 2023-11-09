@@ -33,7 +33,7 @@ const router = createBrowserRouter([
 					</PrivateRoutes>
 				),
 				loader: ({ params }) =>
-					fetch(`http://localhost:5000/api/v1/services/${params.id}`),
+					fetch(`https://offline-service-sharing-server.vercel.app/api/v1/services/${params.id}`),
 			},
 			{
 				path: "/manage-services",

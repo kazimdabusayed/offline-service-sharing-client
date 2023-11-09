@@ -6,14 +6,14 @@ import ServiceCard from "./ServiceCard";
 const AllServices = () => {
 	// const { data: allServices, isLoading, isError } = useQuery(["allServices"], () =>
 	// 	axios
-	// 		.get("http://localhost:5000/api/v1/services")
+	// 		.get("https://offline-service-sharing-server.vercel.app/api/v1/services")
 	// 		.then((res) => res.data)
 	// );
 
 	const [search, setSearch] = useState('');
 
 	const fetchServices = async () => {
-		const res = await axios.get("http://localhost:5000/api/v1/services", {
+		const res = await axios.get("https://offline-service-sharing-server.vercel.app/api/v1/services", {
 			withCredentials: true,
 		});
 		return res.data;

@@ -53,7 +53,7 @@ const Signup = () => {
 					photoURL: photo
 				})
 				axios
-					.post("http://localhost:5000/api/v1/users", {
+					.post("https://offline-service-sharing-server.vercel.app/api/v1/users", {
 						name,
 						email,
 						photo,

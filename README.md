@@ -1,8 +1,13 @@
-# React + Vite
+# DesignHive
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+DesignHive is a platform that connects homeowners with top-quality interior designers for all their home design needs. From living room design to kitchen remodeling, our expert designers will work with you to create a custom design that meets your needs and budget. Our user-friendly interface makes it easy to find the services you need, and our secure payment gateway ensures that your financial information is always protected. With DesignHive, you can transform your home into a beautiful and functional space.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User-friendly interface
+- Booking system
+- Service provider profiles
+- Live previews
+- Fullscreen mode
+
+### Live Link: http://service-sharing-1.web.app

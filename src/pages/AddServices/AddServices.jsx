@@ -1,7 +1,12 @@
 import axios from "axios";
+import { useContext } from "react";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const AddServices = () => {
+
+	const { user } = useContext(AuthContext);
+
 	const handleAddService = (event) => {
 		event.preventDefault();
 		const form = event.target;
@@ -15,7 +20,7 @@ const AddServices = () => {
 
 		// send data to the server
 		axios
-			.post("http://localhost:5000/api/v1/services", {
+			.post("https://offline-service-sharing-server.vercel.app/api/v1/services", {
 				serviceName,
 				area,
 				price,
@@ -119,8 +124,8 @@ const AddServices = () => {
 								name="servicePhoto"
 								id="photo"
 								className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-								placeholder="Service photo URL"
-								required=""
+								defaultValue={user?.photoURL}
+								disabled
 							/>
 						</div>
 						<div>
@@ -135,8 +140,8 @@ const AddServices = () => {
 								name="providerName"
 								id="ProviderName"
 								className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-								placeholder="Type Provider Name"
-								required=""
+								defaultValue={user?.displayName}
+								disabled
 							/>
 						</div>
 						<div>
